@@ -1,8 +1,10 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public new Camera camera;
+    private new Camera camera;
+    private GameManager gameManager;
 
     public float movementSpeed = 2f;
     public Vector3 direction = Vector3.zero;
@@ -15,19 +17,25 @@ public class Player : MonoBehaviour
     public float maxVerticalSpeed = 1.5f;
     public float minVerticalSpeed = 0f;
 
+    public GameObject bulletPrefab;
+    public float bulletVerticalSpeed = 10f;
+
     private void Awake()
     {
         camera = Camera.main;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
     {
-        CheckInput();
+        if (Input.GetKeyDown(KeyCode.Space))
+            FireBullet();
+        CheckMovementInput();
         UpdatePosition();
         UpdateRotation();
     }
 
-    private void CheckInput()
+    private void CheckMovementInput()
     {
         direction.x = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
         verticalSpeed += Input.GetAxis("Vertical") * manualVerticalSpeedChangeFactor * Time.deltaTime;
@@ -50,5 +58,29 @@ public class Player : MonoBehaviour
             transform.eulerAngles = -1 * anglechange * Vector3.up;
         else
             transform.eulerAngles = 0 * Vector3.up;
+    }
+
+    private void FireBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + Vector3.up * 0.75f, quaternion.identity);
+        bullet.GetComponent<Bullet>().SetVerticalSpeed(bulletVerticalSpeed);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        gameManager.PlayerCollidedWithObstacle();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Bridge")))
+            gameManager.SetCheckPoint(other.gameObject.transform.position + Vector3.up * 1.25f);
+    }
+
+    public void ResetPlayer(Vector3 lastCheckPoint)
+    {
+        gameObject.transform.position = lastCheckPoint + Vector3.up * 1.25f;
+        camera.transform.position = lastCheckPoint + new Vector3(0, 7.5f, -10f);
+        verticalSpeed = 0f;
     }
 }
