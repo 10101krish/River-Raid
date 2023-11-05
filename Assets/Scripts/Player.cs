@@ -11,9 +11,10 @@ public class Player : MonoBehaviour
     public float anglechange = 35f;
 
     public float verticalSpeed = 0f;
-    public float verticalSpeedAtRespawn = 0.2f;
-    public float manualVerticalSpeedChangeFactor = 0.5f;
-    public float automaticVerticalSpeedChangeFactor = 0.25f;
+    public float verticalSpeedAtRespawn = 0.25f;
+
+    public float manualVerticalSpeedChangeFactor = 0.25f;
+    // public float automaticVerticalSpeedChangeFactor = 0.25f;
 
     public float maxVerticalSpeed = 1.5f;
     public float minVerticalSpeed = 0f;
@@ -40,8 +41,8 @@ public class Player : MonoBehaviour
     {
         direction.x = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
         verticalSpeed += Input.GetAxis("Vertical") * manualVerticalSpeedChangeFactor * Time.deltaTime;
-        verticalSpeed += automaticVerticalSpeedChangeFactor * Time.deltaTime;
         verticalSpeed = Mathf.Clamp(verticalSpeed, minVerticalSpeed, maxVerticalSpeed);
+        // verticalSpeed += automaticVerticalSpeedChangeFactor * Time.deltaTime;
     }
 
     private void UpdatePosition()

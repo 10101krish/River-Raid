@@ -103,12 +103,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 1.5
   direction: {x: 0, y: 0, z: 0}
-  anglechange: 35
+  anglechange: 45
   verticalSpeed: 0
-  verticalSpeedAtRespawn: 0.2
+  verticalSpeedAtRespawn: 0.25
   manualVerticalSpeedChangeFactor: 0.5
-  automaticVerticalSpeedChangeFactor: 0.2
-  maxVerticalSpeed: 1
+  maxVerticalSpeed: 1.5
   minVerticalSpeed: 0
   bulletPrefab: {fileID: 4285688297618035207, guid: 7895f6605a8049646bd4e9d65b21d183, type: 3}
   bulletVerticalSpeed: 10

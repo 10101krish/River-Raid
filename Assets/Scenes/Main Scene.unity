@@ -2826,6 +2826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b746fbfcc6d175499971ee5e0e9fd7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  overFuelBarrel: 0
   fuelLeft: 0
   maxFuel: 100
   minFuel: 0
@@ -4866,6 +4867,18 @@ PrefabInstance:
     - target: {fileID: 8788296280431663876, guid: 355582367b9b46c48905dc3dfb3de800, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100936292235603360, guid: 355582367b9b46c48905dc3dfb3de800, type: 3}
+      propertyPath: anglechange
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100936292235603360, guid: 355582367b9b46c48905dc3dfb3de800, type: 3}
+      propertyPath: maxVerticalSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100936292235603360, guid: 355582367b9b46c48905dc3dfb3de800, type: 3}
+      propertyPath: verticalSpeedAtRespawn
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
