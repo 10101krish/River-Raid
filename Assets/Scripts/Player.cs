@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float anglechange = 35f;
 
     public float verticalSpeed = 0f;
+    public float verticalSpeedAtRespawn = 0.2f;
     public float manualVerticalSpeedChangeFactor = 0.5f;
     public float automaticVerticalSpeedChangeFactor = 0.25f;
 
@@ -74,13 +75,13 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Bridge")))
-            gameManager.SetCheckPoint(other.gameObject.transform.position + Vector3.up * 1.25f);
+            gameManager.SetCheckPoint(other.gameObject.transform.position);
     }
 
-    public void ResetPlayer(Vector3 lastCheckPoint)
+    public void ResetPlayer(Vector3 playerPosition, Vector3 cameraPosition)
     {
-        gameObject.transform.position = lastCheckPoint + Vector3.up * 1.25f;
-        camera.transform.position = lastCheckPoint + new Vector3(0, 7.5f, -10f);
-        verticalSpeed = 0f;
+        gameObject.transform.position = playerPosition;
+        camera.transform.position = cameraPosition;
+        verticalSpeed = verticalSpeedAtRespawn;
     }
 }

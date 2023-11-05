@@ -2,18 +2,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private Vector3 lastCheckPoint;
+    public Transform startingPositionTransform;
+
+    private new Camera camera;
+    private Vector3 cameraDistanceFromCheckPoint;
+
     private Player player;
+    private Vector3 playerDistanceFromCheckPoint;
+
+    private Vector3 lastCheckPoint;
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
+        camera = Camera.main;
     }
 
     private void Start()
     {
-        lastCheckPoint = new Vector3(0, -7.5f, 0);
-        player.ResetPlayer(lastCheckPoint);
+        lastCheckPoint = startingPositionTransform.position;
+        cameraDistanceFromCheckPoint = camera.transform.position - startingPositionTransform.position;
+        playerDistanceFromCheckPoint = player.transform.position - startingPositionTransform.position;
+        player.ResetPlayer(lastCheckPoint + playerDistanceFromCheckPoint, lastCheckPoint + cameraDistanceFromCheckPoint);
     }
 
     public Vector3 GetLastCheckPoint()
@@ -28,6 +38,6 @@ public class GameManager : MonoBehaviour
 
     public void PlayerCollidedWithObstacle()
     {
-        player.ResetPlayer(lastCheckPoint);
+        player.ResetPlayer(lastCheckPoint + playerDistanceFromCheckPoint, lastCheckPoint + cameraDistanceFromCheckPoint);
     }
 }
