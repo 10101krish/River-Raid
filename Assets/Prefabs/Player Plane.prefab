@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 231601838365881763}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,7 +107,7 @@ MonoBehaviour:
   verticalSpeed: 0
   verticalSpeedAtRespawn: 0.2
   manualVerticalSpeedChangeFactor: 0.5
-  automaticVerticalSpeedChangeFactor: 0.1
+  automaticVerticalSpeedChangeFactor: 0.2
   maxVerticalSpeed: 1
   minVerticalSpeed: 0
   bulletPrefab: {fileID: 4285688297618035207, guid: 7895f6605a8049646bd4e9d65b21d183, type: 3}
@@ -189,7 +189,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -234,7 +234,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

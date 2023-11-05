@@ -28,7 +28,7 @@ public class AirEnemy : MonoBehaviour
         if (transform.position.x <= leftMargin || transform.position.x >= rightMargin)
         {
             direction *= -1;
-            transform.eulerAngles += new Vector3(0, 0, 180);
+            transform.eulerAngles += new Vector3(0, 180, 0);
         }
     }
 

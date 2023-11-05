@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +14,12 @@ public class GameManager : MonoBehaviour
 
     private Vector3 lastCheckPoint;
 
+    private FuelSystem fuelSystem;
+
     private void Awake()
     {
         player = FindObjectOfType<Player>();
+        fuelSystem = FindObjectOfType<FuelSystem>();
         camera = Camera.main;
     }
 
@@ -40,4 +45,20 @@ public class GameManager : MonoBehaviour
     {
         player.ResetPlayer(lastCheckPoint + playerDistanceFromCheckPoint, lastCheckPoint + cameraDistanceFromCheckPoint);
     }
+
+    public void PlayerNowOverFuelBarrel()
+    {
+        fuelSystem.EnteredFuelBarrel();
+    }
+
+    public void PlayerNolongOverFuelBarrel()
+    {
+        fuelSystem.ExitedFuelBarrel();
+    }
+
+    public void FuelDepleted()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 }

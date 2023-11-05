@@ -18,4 +18,10 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Fuel")))
+            Destroy(gameObject);
+    }
 }
