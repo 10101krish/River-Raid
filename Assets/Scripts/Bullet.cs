@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Fuel")))
+        if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Fuel")) || other.gameObject.layer.Equals(LayerMask.NameToLayer("Camera Boundary Front")))
             Destroy(gameObject);
     }
 }

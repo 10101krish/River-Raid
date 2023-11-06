@@ -14,11 +14,11 @@ TagManager:
   - Ground
   - Bridge
   - Bullet
-  - Bullet Boundary
+  - Camera Boundary Front
   - Enemy Air
   - Enemy Water
   - Fuel
-  - 
+  - Camera Boundary Back
   - 
   - 
   - 

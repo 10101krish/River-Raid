@@ -27,8 +27,7 @@ public class WaterEnemy : MonoBehaviour
         else
         {
             if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Bullet")))
-                Debug.Log("Hit by Bullet");
-            Destroy(gameObject);
+                Destroy(gameObject);
         }
     }
 }
