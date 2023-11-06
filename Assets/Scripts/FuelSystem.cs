@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FuelSystem : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class FuelSystem : MonoBehaviour
 
     public float fuelBurnRate = 1;
     public float fuelReplishmentRate = 15;
+
+    public Text fuelText;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class FuelSystem : MonoBehaviour
         //     fuelLeft = Mathf.Clamp(fuelLeft + fuelReplishmentRate * Time.deltaTime, minFuel, maxFuel);
         // else
         //     fuelLeft = Mathf.Clamp(fuelLeft - fuelBurnRate * Time.deltaTime, minFuel, maxFuel);
+        UpdateFuelText();
     }
 
     public void EnteredFuelBarrel()
@@ -52,5 +54,10 @@ public class FuelSystem : MonoBehaviour
     public void ExitedFuelBarrel()
     {
         overFuelBarrel = false;
+    }
+
+    private void UpdateFuelText()
+    {
+        fuelText.text = fuelLeft.ToString();
     }
 }

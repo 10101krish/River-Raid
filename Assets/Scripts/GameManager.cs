@@ -1,5 +1,4 @@
 using Unity.Mathematics;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,11 +21,13 @@ public class GameManager : MonoBehaviour
     private Vector3 levelDistanceFromCheckPoint;
 
     private FuelSystem fuelSystem;
+    private GameSystem gameSystem;
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
         fuelSystem = FindObjectOfType<FuelSystem>();
+        gameSystem = FindObjectOfType<GameSystem>();
         camera = Camera.main;
     }
 
@@ -56,6 +57,14 @@ public class GameManager : MonoBehaviour
     {
         player.ResetPlayer(lastCheckPoint + playerDistanceFromCheckPoint, lastCheckPoint + cameraDistanceFromCheckPoint);
         DestroyNextLevel();
+        gameSystem.DecreaseLives();
+        if (gameSystem.GetCurrentLives() <= 0)
+            LivesDepleted();
+    }
+
+    public void BulletCollidedWithObstacle(int extraScore)
+    {
+        gameSystem.IncreaseScore(extraScore);
     }
 
     public void PlayerNowOverFuelBarrel()
@@ -69,6 +78,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void FuelDepleted()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LivesDepleted()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

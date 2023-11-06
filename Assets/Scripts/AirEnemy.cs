@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AirEnemy : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public float horizontalSpeed = 2f;
     public int direction = 1;
 
@@ -14,6 +16,7 @@ public class AirEnemy : MonoBehaviour
     private void Awake()
     {
         camera = Camera.main;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Start()
@@ -32,15 +35,12 @@ public class AirEnemy : MonoBehaviour
         }
     }
 
-    public int GetHitScore()
-    {
-        return score;
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Bullet")))
-            Debug.Log("Hit by Bullet");
-        Destroy(gameObject);
+        {
+            gameManager.BulletCollidedWithObstacle(score);
+            Destroy(gameObject);
+        }
     }
 }

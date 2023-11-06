@@ -78,19 +78,13 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Bridge")))
             gameManager.SetCheckPoint(other.gameObject.transform.position);
         else if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Fuel")))
-        {
-            Debug.Log("Entered Fuel Barrel");
             gameManager.PlayerNowOverFuelBarrel();
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Fuel")))
-        {
-            Debug.Log("Exited Fuel Barrel");
             gameManager.PlayerNolongOverFuelBarrel();
-        }
     }
 
     public void ResetPlayer(Vector3 playerPosition, Vector3 cameraPosition)
