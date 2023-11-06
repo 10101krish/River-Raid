@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class FuelSystem : MonoBehaviour
     public float fuelReplishmentRate = 15;
 
     public Text fuelText;
+    public GameObject fuelGuage;
 
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class FuelSystem : MonoBehaviour
         //     fuelLeft = Mathf.Clamp(fuelLeft + fuelReplishmentRate * Time.deltaTime, minFuel, maxFuel);
         // else
         //     fuelLeft = Mathf.Clamp(fuelLeft - fuelBurnRate * Time.deltaTime, minFuel, maxFuel);
-        UpdateFuelText();
+        UpdateFuelDisplay();
     }
 
     public void EnteredFuelBarrel()
@@ -56,8 +58,24 @@ public class FuelSystem : MonoBehaviour
         overFuelBarrel = false;
     }
 
+    private void UpdateFuelDisplay()
+    {
+        UpdateFuelText();
+        UpdateFuelGauge();
+    }
+
     private void UpdateFuelText()
     {
         fuelText.text = fuelLeft.ToString();
+    }
+
+    private void UpdateFuelGauge()
+    {
+        Vector3 newScale = new Vector3(fuelLeft / 100f, 1, 1);
+        fuelGuage.transform.localScale = newScale;
+
+        float newPosX = -1 * (100 - fuelLeft) / 2;
+        Vector3 newPosition = new Vector3(newPosX ,fuelGuage.transform.localPosition.y, fuelGuage.transform.localPosition.z);
+        fuelGuage.transform.localPosition = newPosition;
     }
 }

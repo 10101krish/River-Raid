@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
 
     public void SetCheckPoint(Vector3 newCheckPointPosition)
     {
-        Debug.Log("Checkpoint Changed");
         lastCheckPoint = newCheckPointPosition;
         previousLevel = currentLevel;
         currentLevel = nextLevel;
